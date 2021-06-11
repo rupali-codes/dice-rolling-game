@@ -166,3 +166,113 @@ main {
   font-weight: 700;
   color: purple;
 }
+footer{
+  position: fixed;
+  top: 96%;
+  font-weight: bold;
+}
+/*******************  MEDIA QUERY   *********************/
+@media (min-width: 300px) and (max-width: 800px){
+  main {
+    position: relative;
+    width: 40rem;
+    height: 60rem;
+    background-color: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(200px);
+    filter: blur();
+    box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
+    border-radius: 9px;
+    overflow: hidden;
+    display: flex;
+}
+
+.player {
+    flex: 50%;
+    padding: .3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.75s;
+}
+.name {
+  position: relative;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  font-weight: 300;
+  top: 7rem;
+}
+
+.score {
+  font-size: 47px;
+  font-weight: 300;
+  color: purple;
+  margin-bottom: auto;
+  margin-top: 100px;
+}
+.btn {
+  position: absolute;
+  left: 50%;
+  font-size: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 400;
+  transition: all 0.2s;
+
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+
+  padding: 0.3rem 2rem;
+  border-radius: 50rem;
+  box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
+}
+
+.btn::first-letter {
+  font-size: 1rem;
+  display: inline-block;
+  margin-right: 0.7rem;
+}
+
+.btn--new {
+  top: 1rem;
+}
+.btn--roll {
+  top: 35rem;
+}
+.btn--hold {
+  top: 39.1rem;
+}
+.dice {
+  position: absolute;
+  left: 50%;
+  top: 22.5rem;
+  transform: translateX(-50%);
+  height: 10rem;
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
+}
+.current {
+  background-color: purple;
+  opacity: 0.8;
+  border-radius: 9px;
+  color: #fff;
+  width: 65%;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.75s;
+  margin-bottom: 20px;
+}
+
+.current-label {
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-size: 1.7rem;
+  color: #ddd;
+}
+
+.current-score {
+  font-size: 3.5rem;
+}
+
+}
