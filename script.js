@@ -39,8 +39,13 @@ btnRoll.addEventListener('click', function() {
 		console.log(dice);
 		diceEl.style.display='block';
 		diceEl.src = `dice-${dice}.png`;
-		 if(btnRoll.clicked==false){
+		 if(btnRoll.clicked==false || dice==6){
 			console.log("if block");
+			document.getElementById(`current--${activePlayer}`).textContent = "+1 chance"; 
+			//console.log("currentScore " + currentScore);
+			scores[activePlayer] += dice;
+			//console.log("Score " + scores[activePlayer]);
+			document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
 		}
 		else{
 			//current player2
@@ -48,7 +53,7 @@ btnRoll.addEventListener('click', function() {
 			//selecting player dyanamically
 			document.getElementById(`current--${activePlayer}`).textContent = currentScore; 
 		
-			console.log("currentScore " + currentScore);
+			//console.log("currentScore " + currentScore);
 			console.log("else block");
 			scores[activePlayer] += currentScore;
 			document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
