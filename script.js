@@ -41,7 +41,7 @@ btnRoll.addEventListener('click', function() {
 		diceEl.src = `dice-${dice}.png`;
 		 if(btnRoll.clicked==false || dice==6){
 			console.log("if block");
-			document.getElementById(`current--${activePlayer}`).textContent = "+1 chance"; 
+			document.getElementById(`current--${activePlayer}`).textContent = "+1!"; 
 			//console.log("currentScore " + currentScore);
 			scores[activePlayer] += dice;
 			//console.log("Score " + scores[activePlayer]);
