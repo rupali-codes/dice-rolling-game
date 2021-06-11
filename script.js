@@ -16,6 +16,7 @@ score0El.textContent =0;
 score1El.textContent =0;
 let playing = true;
 diceEl.style.display = 'none';
+btnHold.style.display = 'none';
 
 
 let currentScore = 0;
@@ -24,7 +25,6 @@ let activePlayer = 0;
 const scores = [0,0];
 
 const switchPlayer = function(){
-		document.getElementById(`current--${activePlayer}`).textContent = 0;
 		currentScore = 0;
 		activePlayer = activePlayer === 0 ? 1 : 0;
 		//choosing one of the active player
@@ -34,39 +34,38 @@ const switchPlayer = function(){
 
 btnRoll.addEventListener('click', function() {
     if(playing){
-		// let dice = Math.floor((Math.random() * 6)+1);
 		let dice =Math.trunc((Math.random() * 6)+1);
+		let change = 0;
 		console.log(dice);
 		diceEl.style.display='block';
 		diceEl.src = `dice-${dice}.png`;
-		if(dice != 1){
-			// current player1
+		 if(btnRoll.clicked==false){
+			console.log("if block");
+		}
+		else{
+			//current player2
 			currentScore += dice;
 			//selecting player dyanamically
 			document.getElementById(`current--${activePlayer}`).textContent = currentScore; 
-		}else{
-			// current player2
+		
+			console.log("currentScore " + currentScore);
+			console.log("else block");
+			scores[activePlayer] += currentScore;
+			document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+
+
+			if (scores[activePlayer] >= 20) {
+			playing = false;
+			diceEl.style.display = 'none';
+			btnHold.style.display = 'block';
+			btnRoll.style.display = 'none';
+
+			btnHold.textContent = `* PLAYER ${activePlayer+1} WON!`
+			document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+			document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+		}
+
 			switchPlayer();
 		}
   	}
-});
-// holding events..
-btnHold.addEventListener('click', function(){
-	if(playing){
-		scores[activePlayer] += currentScore;
-		document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
-
-		if (scores[activePlayer] >= 20) {
-			playing = false;
-			diceEl.style.display = 'none';
-			btnHold.style.display = 'none';
-			btnRoll.style.display = 'none';
-
-			btnNew.textContent = `* PLAYER ${activePlayer+1} WON!`
-			document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
-			document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
-		}else{		
-		switchPlayer();
-		}
-	}
 });
