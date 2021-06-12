@@ -12,18 +12,28 @@ const btnHold = document.querySelector('.btn--hold');
 const player0El = document.querySelector('.player--0');
 const player1El = document.querySelector('.player--1');
 
-score0El.textContent =0;
-score1El.textContent =0;
-let playing = true;
-diceEl.style.display = 'none';
-btnHold.style.display = 'none';
+let currentScore, playing, activePlayer, scores;
 
+const init = function(){
+	score0El.textContent =0;
+	score1El.textContent =0;
+    playing = true;
+    currentScore = 0;
+    activePlayer = 0;
+	scores = [0,0];
 
-let currentScore = 0;
-let activePlayer = 0;
+	current0El.textContent=0;
+	current1El.textContent=0;
 
-const scores = [0,0];
-
+	diceEl.style.display = 'none';
+	btnHold.style.display = 'none';
+	btnRoll.style.display = 'block';
+	player0El.classList.remove('player--winner');
+	player1El.classList.remove('player--winner');
+	player0El.classList.add('player--active');
+	player1El.classList.remove('player--active');
+}
+init();
 const switchPlayer = function(){
 		currentScore = 0;
 		activePlayer = activePlayer === 0 ? 1 : 0;
@@ -41,10 +51,11 @@ btnRoll.addEventListener('click', function() {
 		diceEl.src = `dice-${dice}.png`;
 		 if(btnRoll.clicked==false || dice==6){
 			console.log("if block");
-			document.getElementById(`current--${activePlayer}`).textContent = "+1!"; 
-			//console.log("currentScore " + currentScore);
+			
+			document.getElementById(`current--${activePlayer}`).textContent = "+1 chance"; 
+			console.log("currentScore " + currentScore);
 			scores[activePlayer] += dice;
-			//console.log("Score " + scores[activePlayer]);
+			console.log("Score " + scores[activePlayer]);
 			document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
 		}
 		else{
@@ -52,10 +63,11 @@ btnRoll.addEventListener('click', function() {
 			currentScore += dice;
 			//selecting player dyanamically
 			document.getElementById(`current--${activePlayer}`).textContent = currentScore; 
-		
-			//console.log("currentScore " + currentScore);
-			console.log("else block");
+			// switchPlayer();
+			console.log("currentScore " + currentScore);
+			console.log("we are in else");
 			scores[activePlayer] += currentScore;
+			console.log("Score " + scores[activePlayer]);	
 			document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
 
 
@@ -65,6 +77,7 @@ btnRoll.addEventListener('click', function() {
 			btnHold.style.display = 'block';
 			btnRoll.style.display = 'none';
 
+			btnNew.textContent = "* Play Again!";
 			btnHold.textContent = `* PLAYER ${activePlayer+1} WON!`
 			document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
 			document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
@@ -74,3 +87,9 @@ btnRoll.addEventListener('click', function() {
 		}
   	}
 });
+
+btnNew.addEventListener('click',function(){
+	init();
+	btnNew.textContent="* THE DICE ROLLING GAME";
+});
+
