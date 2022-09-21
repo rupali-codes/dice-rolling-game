@@ -1,6 +1,6 @@
-# IP tracker
+# Dice Rolling Game
 
- Get IP Location in your pocket
+ Roll the Dice
 
 ![preview](./images/preview.png)
 
