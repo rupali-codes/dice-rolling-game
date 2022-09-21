@@ -48,7 +48,7 @@ btnRoll.addEventListener('click', function() {
 		let change = 0;
 		console.log(dice);
 		diceEl.style.display='block';
-		diceEl.src = `dice-${dice}.png`;
+		diceEl.src = `images/dice-${dice}.png`;
 		 if(btnRoll.clicked==false || dice==6){
 			console.log("if block");
 			
